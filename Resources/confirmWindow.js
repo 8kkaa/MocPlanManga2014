@@ -78,7 +78,7 @@ exports.createConfrimWindow = function() {
 	
 	var pager = pagerModule.createViewPager( {
 				top:10,
-				height :'40%',
+				height :'50%',
 				data: pagerData,
 				tabs: {
 					style: pagerModule.NONE
