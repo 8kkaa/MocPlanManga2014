@@ -64,6 +64,11 @@ exports.createHomeButton = function(){
 		width: uiconfig.COMMON_UNDER_BOTTON_WIDTH,
 		height:uiconfig.COMMON_UNDER_BOTTON_HEIGHT
 	});
+	
+	home_button.addEventListener("click",function(){
+		require("/CommonNavigationWindow").createCommonNavigationWindow().open();
+	});
+	
 	return home_button;
 };
 

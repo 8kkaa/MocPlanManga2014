@@ -1,18 +1,19 @@
 /**
  * @author 佐々木 友弘
  */
-
+uiconfig = require('/uiconfig');
 exports.EditPicturewindow = function(imagePath,selectNumber) {
 	//デバック用のアラート
-	alert(selectNumber);
+	//alert(selectNumber);
 	
 	//4コマの画面を保存する配列を初期
 	var ArrayParameter = require("ArrayParameter");
 	var mangaArray = ArrayParameter.return_array();
+	var textArray = ArrayParameter.return_text_array();
 	
 	//ベースの画面を作成
 	var base_window = Titanium.UI.createWindow({
-		backgroundColor : '#fff',
+		backgroundColor : '#31333f',
 		exitOnClose : false,
 		fullscreen : true,
 		//navBarHidden : true,
@@ -20,63 +21,140 @@ exports.EditPicturewindow = function(imagePath,selectNumber) {
 	});
 	
 	/*
-	 * ヘッダ作成、今はロゴのみ
+	 * ヘッダ作成
 	 */
-	var upperRibbon = require('/CreateCommonParts').createUpperRibbon();
+	var upperRibbon = Titanium.UI.createImageView({
+			image:'/images/header/header_bg.png',
+			width: Ti.UI.FILL,
+			height: uiconfig.HEADER_RIBBON_HEIGHT,
+			top: 0,
+	});
+	
+	// 戻るボタン
+	var back_button = Ti.UI.createButton({
+		backgroundImage: '/images/header/back_btn_black.png',
+		center:{x:width *0.1,y:upperRibbon.height *0.5},
+		// width: uiconfig.OPTION_BUTTON_WIDTH,
+		// height: uiconfig.OPTION_BUTTON_HEIGHT
+		width: width *(100/uiconfig.ACTUAL_WIDTH),
+		height: height *(65/uiconfig.ACTUAL_HEIGHT),
+	});
+	
+	// 完了ボタン
+	var complete_button = Ti.UI.createButton({
+		backgroundImage: '/images/header/complete_btn.png',
+		center: {x:width *0.9, y:upperRibbon.height *0.5},
+		// width: uiconfig.SEARCH_BUTTON_WIDTH,
+		// height: uiconfig.SEARCH_BUTTON_HEIGHT
+		width: width *(100/uiconfig.ACTUAL_WIDTH),
+		height: height *(65/uiconfig.ACTUAL_HEIGHT),
+	});
+
+	// 画像編集ラベル
+	var titel_label = Ti.UI.createLabel({
+		text: '画像編集',
+		color: 'rgb(255,255,255)',
+		font:{fontSize:20, fontWeight:'bold'},
+		top: upperRibbon.height *0.25
+	});
+	
 	base_window.add(upperRibbon);
-
-	var title_label = require('/CreateCommonParts').createTitleLabel();
-	base_window.add(title_label);
-
+	base_window.add(back_button);
+	base_window.add(complete_button);
+	base_window.add(titel_label);
 	/*
 	 * ヘッダ作成ここまで
 	 */
 	
 	/*
-	 * フッタ作成、ホームボタン、作るボタン(list_button)、素材ボタン(people_button)
+	 * フッタ作成
 	 */
-	var underRibbon = require('/CreateCommonParts').createUnderRibbon();
+	var underRibbon = Titanium.UI.createImageView({
+		image: '/images/footer/footer_bg_edit.png',
+		width:Titanium.UI.FILL,
+		//height: 99,
+		height: height *(99/uiconfig.ACTUAL_HEIGHT),
+		bottom: 0
+	});
+	
+	// 回転
+	var roll_button = Ti.UI.createButton({
+		backgroundImage: '/images/footer/before_roll.png',
+		bottom: 0,
+		left: 0,
+		width: width *(143/uiconfig.ACTUAL_WIDTH),
+		height: height *(97/uiconfig.ACTUAL_HEIGHT),
+	});
+	
+	// エフェクト
+	var effect_button = Ti.UI.createButton({
+		backgroundImage: '/images/footer/before_effect.png',
+		bottom: 0,
+		left: width *0.2,
+		width: width *(143/uiconfig.ACTUAL_WIDTH),
+		height: height *(97/uiconfig.ACTUAL_HEIGHT),
+	});
+	
+	// スタンプ
+	var stamp_button = Ti.UI.createButton({
+		backgroundImage: '/images/footer/before_stamp.png',
+		bottom: 0,
+		left: width *0.4,
+		width: width *(143/uiconfig.ACTUAL_WIDTH),
+		height: height *(97/uiconfig.ACTUAL_HEIGHT),
+	});
+	
+	// ブラシ
+	var brush_button = Ti.UI.createButton({
+		backgroundImage: '/images/footer/before_brush.png',
+		bottom: 0,
+		left: width *0.6,
+		width: width *(143/uiconfig.ACTUAL_WIDTH),
+		height: height *(97/uiconfig.ACTUAL_HEIGHT),
+	});
+	
+	// テキスト
+	var text_button = Ti.UI.createButton({
+		backgroundImage: '/images/footer/before_text.png',
+		bottom: 0,
+		left: width *0.8,
+		width: width *(143/uiconfig.ACTUAL_WIDTH),
+		height: height *(97/uiconfig.ACTUAL_HEIGHT),
+	});
+	
 	base_window.add(underRibbon);
-		
-	var home_button = require('/CreateCommonParts').createHomeButton();
-	base_window.add(home_button);
-	
-	var list_button = require('CreateCommonParts').createListButton();
-	base_window.add(list_button);	
-	
-	var people_button = require('/CreateCommonParts').createPeopleButton();
-	base_window.add(people_button);
-
+	base_window.add(roll_button);
+	base_window.add(effect_button);
+	base_window.add(stamp_button);
+	base_window.add(brush_button);
+	base_window.add(text_button);
 	/*
 	 * フッタ作成ここまで
 	 */
 	
-	var editPicture = Ti.UI.createImageView({
-			image:imagePath,
-			width:400,
-			height:400,
-			top:uiconfig.HEADER_RIBBON_HEIGHT * 1.1,
+	// 画像のベースビュー
+	var picture_window = Ti.UI.createView({
+			width:700,
+			height:350,
+			top:uiconfig.HEADER_RIBBON_HEIGHT * 2,
 			bottom: (uiconfig.HEADER_RIBBON_HEIGHT * 1.1 + 400/*this.height*/) *1.05,
 			center:width/2,	
 	});
 	
-	base_window.add(editPicture);
-	
-	var title_label = Ti.UI.createLabel({
-		text:'たいとる',
-		color: 'black',
-		width:editPicture.width,
-		height:120,
-		top: editPicture.bottom + 10,
-		textAlign:'center'
+	// 画像
+	var editPicture = Ti.UI.createImageView({
+			image:imagePath,
 	});
 	
-	base_window.add(title_label);
-	
-	var comment_text = Ti.UI.createTextField({
+	picture_window.add(editPicture);
+	base_window.add(picture_window);
+
+	// コメント、セリフ入力
+	var comment_text = Ti.UI.createTextArea({
 		color:'#336699',
-		center: {x:width * 0.40},
-		bottom: ((height * 99 / uiconfig.ACTUAL_HEIGHT) + 100) *1.1,
+		//center: {x:width * 0.40},
+		//bottom: ((height * 99 / uiconfig.ACTUAL_HEIGHT) + 100) *1.1,
+		bottom: underRibbon.height *2,
 		width:width * 0.7,
 		height:100,
 		hintText:'コメントを追加できます',
@@ -89,40 +167,16 @@ exports.EditPicturewindow = function(imagePath,selectNumber) {
 	
 	base_window.add(comment_text);
 
-	var send_button = Ti.UI.createButton({
-		title: '完了',
-		width:width *0.5,
-		height:100,
-		bottom:height * 99 / uiconfig.ACTUAL_HEIGHT,
-		center:width/2,	
-	});
-
-	
-	base_window.add(send_button);
-
-	var ok_button = Ti.UI.createButton({
-		title: 'OK',
-		bottom: (send_button.bottom + send_button.height) *1.1,
-		right: width * 0.05,
-		width: 100,
-		height: 120
-	});
-	
-	base_window.add(ok_button);
-
-	ok_button.addEventListener('click',function(){
-		//alert('OK');
-		var title_string = comment_text.value;
-		title_label.text = title_string;
-		comment_text.value = '';
-	});
-	
 	//編集した画像のパスを選択したコマに入れる
 	var editImagePath = imagePath;
 	mangaArray[selectNumber] = imagePath;
 	
+	comment_text.addEventListener('change', function(e) {
+		textArray[selectNumber] = comment_text.value;
+	});
+	
 	//編集を完了して4コマ選択画面に移動
-	send_button.addEventListener("click",function(event){
+	complete_button.addEventListener("click",function(event){
 		require("/CreateNewMangaWindow").CreateNewMangaWindow().open();	
 	});
 	
