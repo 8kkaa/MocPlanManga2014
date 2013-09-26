@@ -16,7 +16,7 @@ exports.EditPicturewindow = function(imagePath,selectNumber) {
 		backgroundColor : '#31333f',
 		exitOnClose : false,
 		fullscreen : true,
-		//navBarHidden : true,
+		navBarHidden : true,
 		orientationModes : [Titanium.UI.PORTRAIT],
 	});
 	
@@ -173,6 +173,10 @@ exports.EditPicturewindow = function(imagePath,selectNumber) {
 	
 	comment_text.addEventListener('change', function(e) {
 		textArray[selectNumber] = comment_text.value;
+	});
+	
+	back_button.addEventListener('click', function(event){
+		require("/TemplateImageView").TemplateImageView().open();	
 	});
 	
 	//編集を完了して4コマ選択画面に移動

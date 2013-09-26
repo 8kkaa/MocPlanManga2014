@@ -333,7 +333,8 @@ exports.CreateNewMangaWindow = function() {
 	 * Event listener to open confirmation window
 	 */
 	send_button.addEventListener('click', function() {
-		require('confirmWindow').createConfrimWindow().open();
+		require('confirmWindow').createConfrimWindow(mangaArray[0], mangaArray[1], mangaArray[2], mangaArray[3], 
+														textArray[0], textArray[1], textArray[2], textArray[3]).open();
 	});
 	
 	//選択画像をタップしたときの処理

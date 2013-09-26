@@ -3,12 +3,14 @@
  * Created by Kounakis Ioannis on 23/9/2013
  */
 
-exports.createConfrimWindow = function() {
+exports.createConfrimWindow = function(imagePath1, imagePath2, imagePath3, imagePath4, 
+										comment1, comment2, comment3, comment4) {
 	var uiconfig = require('uiconfig');
 	 	
 	var baseWindow = Titanium.UI.createWindow({
 		backgroundColor: 'white',
 		fullscreen: true,
+		navBarHidden : true, //タイトルバーを隠す
 		orientationModes: [Titanium.UI.PORTRAIT]
 	});
 
@@ -57,23 +59,27 @@ exports.createConfrimWindow = function() {
 		return a;
 	}());
 	
-	function createPage(backgroundColor,label_txt){
-		var page = Ti.UI.createView({backgroundColor:backgroundColor});
-		page.add(Ti.UI.createLabel({
+	function createPage(backgroundColor,comment,imagePath){
+		var base_4coma_view = Ti.UI.createView({});
+		var page = Ti.UI.createImageView({
+			image:imagePath
+			});
+			base_4coma_view.add(page);
+		base_4coma_view.add(Ti.UI.createLabel({
 					color: 'black',
 					font: { fontSize: '14dp' },
-					text: label_txt,
+					text: comment,
 					top: '90%',
-					left: '50%',
-					width: '90%'
+					//left: '50%',
+					//width: '90%'
 			}));
-		return page;
+		return base_4coma_view;
 	}
 	var pagerData = [
-		{ title: "1page",	view: createPage('rgb(255,255,200)',"くそわろた") },
-		{ title: "2page",	view: createPage('rgb(255,200,150)',"これはベン・ジョンソンですか？") },
-		{ title: "3page",	view: createPage('rgb(200,255,100)',"いいえ") },
-		{ title: "4page",	view: createPage('rgb(150,255,200)',"ケフィアです")}
+		{ title: "1page",	view: createPage('rgb(255,255,200)',comment1,imagePath1) },
+		{ title: "2page",	view: createPage('rgb(255,200,150)',comment2,imagePath2) },
+		{ title: "3page",	view: createPage('rgb(200,255,100)',comment3,imagePath3) },
+		{ title: "4page",	view: createPage('rgb(150,255,200)',comment4,imagePath4)}
 	];
 	
 	var pager = pagerModule.createViewPager( {
