@@ -50,6 +50,51 @@ exports.createConfrimWindow = function() {
 	
 	baseWindow.add(mainView);
 	
+	var pagerModule = require("net.bajawa.pager");
+	var dummyTableData = (function () {
+		var a = [];
+		for (var i=0; i < 100; i++) a.push({ title: "I am item " + i });
+		return a;
+	}());
+	
+	function createPage(backgroundColor,label_txt){
+		var page = Ti.UI.createView({backgroundColor:backgroundColor});
+		page.add(Ti.UI.createLabel({
+					color: 'black',
+					font: { fontSize: '14dp' },
+					text: label_txt,
+					top: '90%',
+					left: '50%',
+					width: '90%'
+			}));
+		return page;
+	}
+	var pagerData = [
+		{ title: "1page",	view: createPage('rgb(255,255,200)',"くそわろた") },
+		{ title: "2page",	view: createPage('rgb(255,200,150)',"これはベン・ジョンソンですか？") },
+		{ title: "3page",	view: createPage('rgb(200,255,100)',"いいえ") },
+		{ title: "4page",	view: createPage('rgb(150,255,200)',"ケフィアです")}
+	];
+	
+	var pager = pagerModule.createViewPager( {
+				top:10,
+				height :'50%',
+				data: pagerData,
+				tabs: {
+					style: pagerModule.NONE
+				},
+				indicator: {
+					style: pagerModule.LINE,
+					height: 5,
+					color: "#91a438",
+					fadeOutTime: 100,
+					fadingDuration: 1000
+				}
+			});
+	mainView.add(pager);
+
+	//win.add(pagerModule.createViewPager(options));
+	/*
 	var mangaWebView = Ti.UI.createWebView({
 		backgroundColor: 'blue',
 		top: '5%',
@@ -59,7 +104,7 @@ exports.createConfrimWindow = function() {
 	});
 	
 	mainView.add(mangaWebView);
-	
+	*/
 	var originalTagLabel = 'Tags: ';
 	var tagLabel = Ti.UI.createLabel({
 		color: 'black',
