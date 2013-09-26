@@ -171,8 +171,8 @@ exports.CreateNewMangaWindow = function() {
 	
 	//タイトルを作成するテキストボックス
 	var input_title = Ti.UI.createTextField({
-		backgroundColor:'rgb(255,235,205)',
-		focusable:false,
+		backgroundColor:'rgb(255,235,150)',
+		//focusable:false,
 		color:'#336699',
 		//top: input_view.top + input_view.height,
 		top: 2000,
@@ -181,9 +181,11 @@ exports.CreateNewMangaWindow = function() {
 		height:100,
 		hintText:'4コマのタイトルを入力してください',
 		font:{fontSize:20, fontWeight:'bold'},
-		navBarHidden:true,
+		/*navBarHidden:true,
+		*/
 		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 		returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
+		
 		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
@@ -315,7 +317,7 @@ exports.CreateNewMangaWindow = function() {
 		selectPicture(3);
 	});
 	
-	base_window.addEventListener('open',function(event){
+	base_window.addEventListener('touchstart',function(event){
 		input_title.blur();
 	});
 

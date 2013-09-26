@@ -1,10 +1,10 @@
 android/ATTR_MINIFY=true
-android/ATTR_PROJECT_NAME=MangaView
+android/ATTR_PROJECT_NAME=MocPlanManga2014
 android/abi=armeabi
-android/distribute_path=C\:\\Users\\fviAtt\\TitaniumWorkSpace\\MangaView\\apk
+android/distribute_path=C\:\\Users\\fviAtt\\Desktop
 android/keystore_alias=cyberagentMocplan
 android/keystore_password=mocplan
-android/keystore_path=C\:\\Users\\fviAtt\\TitaniumWorkSpace\\MangaView\\Resources\\publishkey\\publishkey
-android/recent_output=C\:\\Users\\fviAtt\\TitaniumWorkSpace\\MangaView\\apk
+android/keystore_path=C\:\\Users\\fviAtt\\TitaniumWorkSpace\\MocPlanManga2014\\Resources\\publishkey\\publishkey
+android/recent_output=C\:\\Users\\fviAtt\\Desktop
 android/sdk_version=Google APIs Android 2.3.3
 eclipse.preferences.version=1

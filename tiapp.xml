@@ -12,7 +12,7 @@
     <url>http://</url>
     <description>not specified</description>
     <copyright>2013 by fviAtt</copyright>
-    <icon>appicon.PNG</icon>
+    <icon>icon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
     <statusbar-style>default</statusbar-style>
@@ -56,5 +56,9 @@
     <sdk-version>3.1.2.GA</sdk-version>
 
     <property name="ti.deploytype">test</property>
+<<<<<<< HEAD
+
+=======
+>>>>>>> f154b2872e15d6fd99b036573e6faa28e0b75c8e
 
 </ti:app>

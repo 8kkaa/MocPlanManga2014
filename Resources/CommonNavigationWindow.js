@@ -341,7 +341,7 @@ exports.createCommonNavigationWindow = function() {
 
 	base_view.add(require('/CreateCommonParts').createHomeButton());
 
-	base_view.add(require('CreateCommonParts').createListButton());	
+	base_view.add(require('/CreateCommonParts').createListButton());	
 	
 	base_view.add(require('/CreateCommonParts').createPeopleButton());	
 
