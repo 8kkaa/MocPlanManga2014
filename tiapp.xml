@@ -56,9 +56,7 @@
     <sdk-version>3.1.2.GA</sdk-version>
 
     <property name="ti.deploytype">test</property>
-<<<<<<< HEAD
 
-=======
->>>>>>> f154b2872e15d6fd99b036573e6faa28e0b75c8e
+
 
 </ti:app>
